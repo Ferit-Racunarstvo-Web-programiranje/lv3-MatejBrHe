@@ -282,3 +282,35 @@ td:first-child {
 picture:hover {
     opacity: 0.7;
 }
+
+.button {
+	width: 100px;
+	height: 35px;
+	margin: 5px;
+	background-color: navy;
+	text-align: center;
+}
+
+.addButton {
+	color: navy;
+	cursor: pointer;
+}
+
+.removeButton {
+	color: red;
+	cursor: pointer;
+}
+
+.select {
+	width: 200px;
+	margin: 0px 5px;
+}
+
+.plan {
+	height: 100%;
+	width: 300px;
+	background-color: lightgray;
+	position: absolute;
+	left: 0px;
+	text-align: center;
+}
