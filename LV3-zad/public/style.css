@@ -1,0 +1,284 @@
+/* Opći stilovi */
+body {
+	--graph-color1: #3498db;
+	--graph-color2: #959595;
+	--graph-color3: #454545;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    text-align: center;
+}
+
+/* Animacije */
+@keyframes fade {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+/* Header i navigacija */
+header {
+    background: #222;
+    color: white;
+    padding: 20px;
+    animation-name: fade;
+    animation-duration: 2s;
+}
+
+nav {
+	animation-name: fade;
+    animation-duration: 2s;
+}
+
+main {
+	animation-name: fade;
+    animation-duration: 2s;
+}
+
+footer {
+	animation-name: fade;
+    animation-duration: 2s;
+}
+
+.nav-menu {
+	position: relative;
+    display: flex;
+	flex-direction: column;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 0px;
+    margin-right: 100%;
+}
+
+.nav-icon:hover {
+	opacity: 0.75;
+}
+
+.nav-menu:hover .nav-content {
+	display: block;
+}
+
+.nav-content {
+	display: none;
+	margin: 0px;
+	padding: 0px;
+    list-style: none;
+	position: absolute;
+	top: 100px;
+	z-index: 1;
+}
+
+.nav-content li {
+	display: block;
+}
+
+li {
+    background-color: #222;
+    width: 250px;
+	height: 50px;
+    border-top: 2px solid #ffffff;
+}
+
+li:hover {
+	background-color: #000;
+}
+
+li a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: inherit;
+    text-decoration: none;
+	color: white;
+    font-weight: bold;
+	font-size: 1.5em;
+}
+
+/* Sekcije */
+.content {
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox za podatke */
+.data-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Kružni grafikon - CSS samo */
+.graph-container {
+	display: grid;
+	justify-content: center;
+}
+
+.donut-chart {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background:
+		radial-gradient(
+			#ffffff 0% 40%,
+			transparent 40% 70%,
+			#ffffff 70% 100%
+		),
+		conic-gradient(
+			from 315deg,
+        	var(--graph-color1) 0% 24%,
+        	var(--graph-color2) 24% 70%,
+        	var(--graph-color3) 70% 100%
+    	);
+    margin: 0 auto;
+}
+
+.legend {
+	margin: 0px auto;
+	margin-top: 20px;
+	font-size: 1.3rem;
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.legend span {
+	position: relative;
+	padding-inline-start: 1.2rem;
+}
+
+.legend span::before {
+	position: absolute;
+	top: 0.4rem;
+	left: 0;
+	content: "";
+	width: 0.8rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+}
+
+.legend span:nth-child(1)::before {
+	background-color: var(--graph-color1);
+}
+
+.legend span:nth-child(2)::before {
+	background-color: var(--graph-color2);
+}
+
+.legend span:nth-child(3)::before {
+	background-color: var(--graph-color3);
+}
+
+/* Flexbox analiza sekcija */
+.analysis-flex {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap; /* wrap */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.analysis-box {
+    background: #e3e3e3;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+/* Flexbox za kontakt formu */
+.form-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+input, button {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    background: #222;
+    color: white;
+}
+
+/* Responzivnost */
+@media (max-width: 768px) {
+    .data-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .analysis-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .form-flex input, .form-flex button {
+        width: 100%;
+    }
+}
+
+/* Table style */
+table {
+	margin: 0px auto;
+    border-collapse: collapse;
+}
+
+th {
+    border-left: 2px dotted slategray;
+    border-bottom: 2px solid black;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+th:first-child {
+	border-left: none;
+}
+
+td {
+    border-left: 2px dotted slategray;
+}
+
+td:first-child {
+	border-left: none;
+}
+
+/* Picture style */
+picture:hover {
+    opacity: 0.7;
+}

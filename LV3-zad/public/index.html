@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+	<html lang="hr">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--dodati meta tag bitan za stranicu-->
+		<meta charset="UTF-8">
+		<!--dodati link za css dokumente -->
+		<link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+		<title>Vrijeme</title>
+	</head>
+	<body>
+		<header>
+		<h1>Dobrodosli na web stranicu za vrijeme</h1>
+		</header>
+
+		<main>
+
+		<h1>Vremenski Podaci</h1>
+
+        <div id="filteri">
+            <select id="filter-temp">
+                <option value="">-- Odaberi temperaturu --</option>
+                <option value="<20">Manja od 20</option>
+                <option value="20-30">Od 20 do 30</option>
+                <option value="30>">Veća od 30</option>
+            </select>
+            <select id="filter-season">
+                <option value="">-- Odaberi sezonu --</option>
+                <option value="spring">Spring</option>
+                <option value="autumn">Autumn</option>
+                <option value="summer">Summer</option>
+            </select>
+            <select id="filter-location">
+                <option value="">-- Odaberi lokaciju --</option>
+                <option value="inland">Inland</option>
+                <option value="mountain">Mountain</option>
+                <option value="coastal">Coastal</option>
+            </select>
+            <select id="filter-wType">
+                <option value="">-- Odaberi tip vremena --</option>
+                <option value="sunny">Sunny</option>
+                <option value="cloudy">Cloudy</option>
+                <option value="rainy">Rainy</option>
+            </select>
+            <select id="filter-humidity">
+                <option value="">-- Odaberi vlažnost --</option>
+                <option value="<33">Manja od 33%</option>
+                <option value="33-66">Između 33% i 66%</option>
+                <option value=">66">Veća od 66%</option>
+            </select>
+        </div>
+
+        <button onclick="filter()">Filtriraj</button>
+
+
+		<table id="table">
+            <tr class="table-header">
+                <th>Date</th>
+                <th>Temperature (°C)</th>
+                <th>Season</th>
+                <th>Location</th>
+                <th>Weather Type</th>
+                <th>Humidity (%)</th>
+            </tr>
+		</table>
+
+		</main>
+
+		<footer>
+		<p>&copy; 2025. Web Programiranje. Sva prava pridrzana.</p>
+		</footer>
+
+        <script>
+
+            var data = [];
+            fetch('vrijeme.csv')
+                .then(res => res.text())
+                .then(csv => {
+                    const rezultat = Papa.parse(csv, {
+                        header: true,
+                        skipEmptyLines: true
+                    })
+                    data = rezultat.data
+                    var table = document.getElementById("table");
+                    for(var i=0; i<data.length; i++){
+                        table.innerHTML += `<tr><td>${data[i].date}</td><td>${data[i].temperature}</td><td>${data[i].season}</td><td>${data[i].location}</td><td>${data[i].weather_type}</td><td>${data[i].humidity}</td></tr>`
+                    }
+                });
+            
+            var filter = () => {
+                const selected = Array.from(document.getElementById('filter-temp').selectedOptions).map(option => option.value);
+                selected.push(document.getElementById('filter-season').selectedOptions);
+                console.log(selected);
+            }
+
+        </script>
+	</body>
+	</html>
